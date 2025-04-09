@@ -18,31 +18,6 @@ This is a Streamlit-based web application designed to predict the likelihood of 
    - Displays model performance metrics, including classification reports, confusion matrices, and accuracy/loss values.
    - Visualizes the ROC curve for model evaluation.
     ![App Preview](image2.png)
-## Dataset
-
-The dataset used in this project is sourced from the National Institute of Diabetes and Digestive and Kidney Diseases. It contains diagnostic measurements for predicting diabetes in Pima Indian women aged 21 or older. For more details, refer to the `Data/about_data.txt` file.
-
-## Project Structure
-Here’s the updated README.md with the project structure added:
-
-```markdown
-# Diabetes Prediction App
-
-This is a Streamlit-based web application designed to predict the likelihood of diabetes in individuals based on diagnostic measurements. The app also provides tools for data exploration and model evaluation.
-
-## Features
-
-1. **Prediction Page**: 
-   - Allows users to input diagnostic measurements and calculates the probability of diabetes.
-   - Provides a binary prediction (Yes/No) based on the selected threshold.
-
-2. **Data Exploration Page**:
-   - Displays descriptive statistics of the dataset.
-   - Provides interactive visualizations such as line charts and heatmaps to explore feature correlations.
-
-3. **Model Evaluation Page**:
-   - Displays model performance metrics, including classification reports, confusion matrices, and accuracy/loss values.
-   - Visualizes the ROC curve for model evaluation.
 
 ## Dataset
 
