@@ -50,7 +50,6 @@ The dataset used in this project is sourced from the National Institute of Diabe
 
 ## Project Structure
 
-```
 diabetes_prediction_app/
 ├── .streamlit/
 │   └── config.toml
@@ -77,7 +76,6 @@ diabetes_prediction_app/
 
 Collecting workspace informationHere’s a suggested content for your README file:
 
-```plaintext
 # Diabetes Prediction App
 
 This is a Streamlit-based web application designed to predict the likelihood of diabetes in individuals based on diagnostic measurements. The app also provides tools for data exploration and model evaluation.
