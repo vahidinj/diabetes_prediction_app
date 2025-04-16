@@ -1,0 +1,13 @@
+readme.md
+image.png
+image2.png
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+.vscode/
+Data/about_data.txt
+Data/data_exploration.py
+Data/kaggle_data_download.py
+.gitignore
