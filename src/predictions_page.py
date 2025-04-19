@@ -7,9 +7,7 @@ from models.predictions import diabetes_prediction
 
 
 def prediction_page():
-    tab1, tab2 = st.tabs(
-        ["Select Values Features Individualy", "Predict via Document Upload"]
-    )
+    tab1, tab2 = st.tabs(["Predictions via Selections", "Batch Predictions"])
 
     with tab1:
         st.write(

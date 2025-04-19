@@ -1,6 +1,6 @@
 # Diabetes Prediction App
 
-This is a Streamlit-based web application designed to predict the likelihood of diabetes in individuals based on diagnostic measurements. The app also provides tools for data exploration and model evaluation.
+This is a Streamlit-based web application designed to predict the likelihood of diabetes in individuals based on diagnostic measurements. The app also provides tools for data exploration, model evaluation, and batch predictions.
 
 ## Dataset
 
@@ -11,6 +11,9 @@ The dataset used in this project is sourced from the National Institute of Diabe
 1. **Prediction Page**: 
    - Allows users to input diagnostic measurements and calculates the probability of diabetes.
    - Provides a binary prediction (Yes/No) based on the selected threshold.
+   - Users can upload a CSV file containing multiple records for batch predictions.
+   - The app processes the file, adds prediction probabilities and binary outcomes, and allows users to download the results as a CSV file.
+   ![App Preview](image1.png)
 
 2. **Data Exploration Page**:
    - Displays descriptive statistics of the dataset.
@@ -73,6 +76,7 @@ src/
 ## Usage
 
 - Navigate to the **Prediction Page** to input diagnostic measurements and predict diabetes.
+- Upload a CSV file on the **Batch Prediction** section for multiple predictions.
 - Explore the dataset and its correlations on the **Data Exploration Page**.
 - Evaluate the model's performance on the **Model Evaluation Page**.
 
