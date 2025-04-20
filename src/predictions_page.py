@@ -74,31 +74,40 @@ def prediction_page():
         with st.expander("Acceptable Data Frame Features"):
             st.write(list(df.drop("Outcome", axis=1).columns))
 
-        uploaded_file = st.file_uploader("Upload CSV File", type=["csv"])
+        try:
+            uploaded_file = st.file_uploader("Upload CSV File", type=["csv"])
 
-        if uploaded_file is not None:
-            uploaded_df = pd.read_csv(uploaded_file)
-            X_uploaded = uploaded_df.values
+            if uploaded_file is not None:
+                try:
+                    uploaded_df = pd.read_csv(uploaded_file)
 
-            probabilities, predictions = diabetes_prediction(X_uploaded)
+                    X_uploaded = uploaded_df.values
 
-            uploaded_df["probability"] = probabilities
-            uploaded_df["prediction"] = predictions
+                    probabilities, predictions = diabetes_prediction(X_uploaded)
 
-            st.write("Prediction Results Sample:")
-            st.dataframe(uploaded_df.sample(5))
+                    uploaded_df["probability"] = probabilities
+                    uploaded_df["prediction"] = predictions
 
-            csv = uploaded_df.to_csv(index=False).encode("utf-8")
+                    st.write("Prediction Results Sample:")
+                    st.dataframe(uploaded_df.sample(5))
 
-            st.download_button(
-                data=csv,
-                label="Download Prediction Results as CSV",
-                file_name="model_results.csv",
-                mime="text/csv",
-            )
+                    csv = uploaded_df.to_csv(index=False).encode("utf-8")
+                    st.download_button(
+                        data=csv,
+                        label="Download Prediction Results as CSV",
+                        file_name="model_results.csv",
+                        mime="text/csv",
+                    )
 
-            # results_file_path = "model_results.csv"
-            # with open(results_file_path, "wt") as file:
-            #     file.write(uploaded_df.to_csv(index=False).encode("utf-8"))
-        else:
-            st.info("Please upload a CSV file to make predictions")
+                # results_file_path = "model_results.csv"
+                # with open(results_file_path, "wt") as file:
+                #     file.write(uploaded_df.to_csv(index=False).encode("utf-8"))
+
+                except Exception as file_error:
+                    st.error(
+                        f"An error occurred while processing the file: {file_error}"
+                    )
+            else:
+                st.info("Please upload a CSV file to proceed.")
+        except Exception as e:
+            st.error(f"An unexpected error occurred: {e}")
