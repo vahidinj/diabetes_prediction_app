@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import streamlit as st
 
 df = pd.read_csv("Data/diabetes.csv")
 
@@ -90,3 +91,13 @@ def heat_map(data):
     fig, ax = plt.subplots()
     sns.heatmap(data=data, annot=True, cmap="coolwarm")
     return fig
+
+
+def select_threshold():
+    return st.slider(
+        "Select Threshold",
+        min_value=float(0),
+        max_value=float(1),
+        value=0.45,
+        step=0.05,
+    )

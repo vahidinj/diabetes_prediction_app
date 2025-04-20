@@ -99,17 +99,7 @@ def roc_curve_graph():
 # roc_curve_graph()
 
 
-thresholds = [
-    0.1,
-    0.2,
-    0.25,
-    0.3,
-    0.35,
-    0.4,
-    0.45,
-    0.5,
-    0.6,
-]
+thresholds = [range(0, 1)]
 
 
 def evaluate_threshold(threshold):
@@ -145,6 +135,24 @@ SELECTED_THRESHOLD = 0.45
 y_pred_adjusted = (y_pred_proba[:, 1] >= SELECTED_THRESHOLD).astype(int)
 # Convert the 0/1 predictions back into a 2D probability distribution
 y_pred_adjusted_proba = np.column_stack((1 - y_pred_adjusted, y_pred_adjusted))
+
+
+def compute_metrics(threshold):
+    # Adjust predictions based on the threshold
+    y_pred_adjusted = (y_pred_proba[:, 1] >= threshold).astype(int)
+
+    # Confusion matrix
+    cm = confusion_matrix(y_test, y_pred_adjusted)
+
+    # Classification report as a DataFrame
+    class_report = classification_report(y_test, y_pred_adjusted, output_dict=True)
+    class_report_df = pd.DataFrame(class_report).transpose()
+
+    # Accuracy and loss
+    score = accuracy_score(y_test, y_pred_adjusted)
+    loss = log_loss(y_test, y_pred_proba)
+
+    return cm, class_report_df, score, loss
 
 
 # Exporting the model

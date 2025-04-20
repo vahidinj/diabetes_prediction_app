@@ -24,6 +24,7 @@ The dataset used in this project is sourced from the National Institute of Diabe
    - Displays model performance metrics, including classification reports, confusion matrices, and accuracy/loss values.
    - Visualizes the ROC curve for model evaluation.
     ![App Preview](image2.png)
+    ![App Preview](image3.png)
 
 4. **About Page**:
    - Provides an overview of the application, its purpose, and how it can be used.

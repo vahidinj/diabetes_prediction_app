@@ -1,25 +1,28 @@
 import streamlit as st
-from models.logistic_model import roc_curve_graph, cm, class_report_df, score, loss
+from models.logistic_model import roc_curve_graph, compute_metrics
+from utils.helper import select_threshold
 
 
 @st.fragment()
 def model_evaluation():
-    st.write("## Model Performance Metrics")
-    col1, col2, col3 = st.columns([3, 1, 1])
+    # Select threshold dynamically
+    selected_threshold = select_threshold()
 
-    # Display the classification report in its own row
-    with st.container():
-        st.subheader("Classification Report")
-        st.data_editor(class_report_df)
+    # Recompute metrics based on the selected threshold
+    cm, class_report_df, score, loss = compute_metrics(selected_threshold)
+
+    # Display the classification report
+    st.subheader("Classification Report")
+    st.data_editor(class_report_df)
 
     # Display the confusion matrix and accuracy/loss side by side
-    col2, col3 = st.columns([1, 1])
+    col1, col2 = st.columns([1, 1])
 
-    with col2:
+    with col1:
         st.subheader("Confusion Matrix")
         st.data_editor(cm)
 
-    with col3:
+    with col2:
         st.subheader("Accuracy / Loss")
         metrics_data = {
             "Metric": ["Accuracy", "Loss"],
@@ -27,15 +30,12 @@ def model_evaluation():
         }
         st.data_editor(metrics_data)
 
-        # Display ROC Curve
-    # Initialize session state for the button
+    # Display ROC Curve
     st.session_state.setdefault("show_roc", False)
 
-    # Toggle the state when the button is pressed
     if st.button("Show/Hide ROC Curve"):
-        st.session_state.show_roc = True if not st.session_state.show_roc else False
+        st.session_state.show_roc = not st.session_state.show_roc
 
-    # Display the ROC curve based on the state
     if st.session_state.show_roc:
         fig = roc_curve_graph()
         st.pyplot(fig)
