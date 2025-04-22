@@ -130,7 +130,7 @@ for threshold in thresholds:
 
 # Best model considering that this is medically related is 0.45, despite 0.6 having the best accuracy and precision.
 
-SELECTED_THRESHOLD = 0.45
+SELECTED_THRESHOLD = 0.5
 
 y_pred_adjusted = (y_pred_proba[:, 1] >= SELECTED_THRESHOLD).astype(int)
 # Convert the 0/1 predictions back into a 2D probability distribution
